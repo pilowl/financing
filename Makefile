@@ -1,4 +1,10 @@
-curl:
+run:
+	./gradlew bootRun
+
+setup:
+	docker-compose up -d postgres
+
+test_curl:
 	curl -H 'Content-Type: application/json' -d '\
 {\
     "phoneNumber":"+37124000000",\
