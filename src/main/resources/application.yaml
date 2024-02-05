@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://0.0.0.0:5432/financing
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+server:
+  port: 8080
+  
+integrations:
+  jobs:
+    draft-application-status-check-ms: 15000
+  fastbank:
+    base:
+    enabled: true
+  solidbank:
+    base:
+    enabled: true
