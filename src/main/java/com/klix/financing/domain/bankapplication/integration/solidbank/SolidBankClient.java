@@ -1,6 +1,5 @@
 package com.klix.financing.domain.bankapplication.integration.solidbank;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationEventPublisher;
@@ -24,7 +23,6 @@ import com.klix.financing.domain.bankapplication.integration.solidbank.dto.Creat
 import com.klix.financing.domain.bankapplication.integration.solidbank.mapper.SolidBankRequestMapper;
 import com.klix.financing.domain.bankapplication.model.BankName;
 import com.klix.financing.infrastructure.exceptions.WebClientRequestError;
-import com.klix.financing.infrastructure.logger.Slf4jLogger;
 import com.klix.financing.infrastructure.web.DefaultWebClient;
 
 import reactor.core.publisher.Mono;

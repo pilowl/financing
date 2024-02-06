@@ -1,5 +1,5 @@
 run:
-	./gradlew bootRun
+	@./gradlew bootRun
 
 setup:
 	docker-compose up -d postgres

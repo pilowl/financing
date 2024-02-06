@@ -1,6 +1,5 @@
 package com.klix.financing.domain.application.rest;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.http.HttpStatus;

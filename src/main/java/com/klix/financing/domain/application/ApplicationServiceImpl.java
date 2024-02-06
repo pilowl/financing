@@ -1,6 +1,5 @@
 package com.klix.financing.domain.application;
 
-import java.util.List;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;

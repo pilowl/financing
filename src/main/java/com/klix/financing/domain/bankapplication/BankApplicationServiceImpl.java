@@ -12,6 +12,7 @@ import com.klix.financing.domain.application.repository.ApplicationRepository;
 import com.klix.financing.domain.application.repository.entity.Application;
 import com.klix.financing.domain.bankapplication.mapper.BankApplicationMapper;
 import com.klix.financing.domain.bankapplication.model.BankName;
+import com.klix.financing.domain.bankapplication.offer.OfferService;
 import com.klix.financing.domain.bankapplication.offer.mapper.OfferMapper;
 import com.klix.financing.domain.bankapplication.offer.model.OfferDetails;
 import com.klix.financing.domain.bankapplication.offer.repository.OfferRepository;
@@ -31,27 +32,25 @@ public class BankApplicationServiceImpl implements BankApplicationService {
     private final HashMap<BankName, BankClient> bankClientIndex;
 
     private final ApplicationRepository applicationRespository;
-    private final BankApplicationRepository bankApplicationRepository;
-    private final OfferRepository offerRepository;
 
+    private final BankApplicationRepository bankApplicationRepository;
     private final BankApplicationMapper bankApplicationMapper;
-    private final OfferMapper offerMapper;
+
+    private final OfferService offerService;
     
 
     public BankApplicationServiceImpl(List<BankClient> bankClients,
         ApplicationRepository applicationRepository,
         BankApplicationRepository bankApplicationRepository,
-        OfferRepository offerRepository,
-        BankApplicationMapper bankApplicationMapper,
-        OfferMapper offerMapper
+        OfferService offerService,
+        BankApplicationMapper bankApplicationMapper
     ) {
         this.bankClients = bankClients;
+        this.bankClientIndex = new HashMap<BankName, BankClient>();
         this.applicationRespository = applicationRepository;
         this.bankApplicationRepository = bankApplicationRepository;
-        this.offerRepository = offerRepository;
-        this.offerMapper = offerMapper;
         this.bankApplicationMapper = bankApplicationMapper;
-        this.bankClientIndex = new HashMap<BankName, BankClient>();
+        this.offerService = offerService;
         for (BankClient bc : bankClients) {
             this.bankClientIndex.put(bc.getName(), bc);
         }
@@ -84,16 +83,7 @@ public class BankApplicationServiceImpl implements BankApplicationService {
 
     @Override
     public void addBankApplicationOffer(Integer bankApplicationID, OfferDetails offerDetails) {
-        Optional<BankApplication> bankApplication = bankApplicationRepository.findById(bankApplicationID);
-        if (!bankApplication.isPresent()) {
-            logger.error("Failed to find bank application by id while adding offer (BankApplicationID: %d)", bankApplicationID);
-            return;
-        }
-        
-        Offer newOffer = offerMapper.mapOfferDetailsToOffer(offerDetails);
-        newOffer.setApplication(bankApplication.get());
-        
-        offerRepository.save(newOffer);
+        offerService.addBankApplicationOffer(bankApplicationID, offerDetails);
     }
 
     public void revisitDraftApplications() {
