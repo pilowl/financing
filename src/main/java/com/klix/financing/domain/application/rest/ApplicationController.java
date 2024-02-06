@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.klix.financing.domain.application.ApplicationService;
 import com.klix.financing.domain.application.model.ApplicationWithOrders;
-import com.klix.financing.domain.application.repository.entity.Application;
 import com.klix.financing.domain.application.rest.dto.CreateApplicationRequest;
 import com.klix.financing.domain.application.rest.dto.CreateApplicationResponse;
 import com.klix.financing.domain.application.rest.dto.GetApplicationResponse;
@@ -40,10 +39,11 @@ public class ApplicationController {
 
     @PostMapping
     public ResponseEntity<?> createApplication(@RequestBody @Valid CreateApplicationRequest request, BindingResult bindingResult) {
-        UUID uuid = applicationService.PostApplication(applicationRequestMapper.mapCreateApplicationRequestToApplicationDetails(request));
         if (bindingResult.hasErrors()) {
             return ResponseEntity.badRequest().body(FieldValidationError.fromObjectErrors("There are some validation errors", bindingResult.getAllErrors()));
         }
+
+        UUID uuid = applicationService.PostApplication(applicationRequestMapper.mapCreateApplicationRequestToApplicationDetails(request));
         return new ResponseEntity<>(new CreateApplicationResponse(uuid), HttpStatus.CREATED);
     }
 

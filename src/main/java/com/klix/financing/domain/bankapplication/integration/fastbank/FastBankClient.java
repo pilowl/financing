@@ -1,7 +1,5 @@
 package com.klix.financing.domain.bankapplication.integration.fastbank;
 
-import org.slf4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationEventPublisher;
@@ -9,7 +7,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -26,7 +23,6 @@ import com.klix.financing.domain.bankapplication.integration.fastbank.dto.Applic
 import com.klix.financing.domain.bankapplication.integration.fastbank.mapper.FastBankRequestMapper;
 import com.klix.financing.domain.bankapplication.model.BankName;
 import com.klix.financing.infrastructure.exceptions.WebClientRequestError;
-import com.klix.financing.infrastructure.logger.Slf4jLogger;
 import com.klix.financing.infrastructure.web.DefaultWebClient;
 
 import reactor.core.publisher.Mono;
