@@ -57,7 +57,7 @@ public class BankApplicationServiceImpl implements BankApplicationService {
     }
 
     public void spreadApplication(ApplicationDetails applicationDetails) {
-        Application application = applicationRespository.findByUuid(applicationDetails.getUuid());
+        Application application = applicationRespository.findApplicationByUuid(applicationDetails.getUuid());
 
         for (BankClient client : bankClients) {
             BankApplication newBankApplication = BankApplication.builder()

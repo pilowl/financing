@@ -38,7 +38,7 @@ public class OfferServiceImpl implements OfferService {
         }
         
         Offer newOffer = offerMapper.mapOfferDetailsToOffer(offerDetails);
-        newOffer.setApplication(bankApplication.get());
+        newOffer.setBankApplication(bankApplication.get());
         
         offerRepository.save(newOffer);
     }

@@ -3,10 +3,12 @@ package com.klix.financing.domain.bankapplication.repository.entity;
 import com.klix.financing.domain.application.repository.entity.Application;
 import com.klix.financing.domain.bankapplication.offer.repository.entity.Offer;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -37,12 +39,8 @@ public class BankApplication {
     @JoinColumn(name="application_id", nullable=false)
     private Application application;
 
-    @OneToOne
-    @JoinColumn(name = "bank_application_id")
-    private Offer orders;
-
-    @OneToOne
-    @JoinColumn(name="")
+    @OneToOne(mappedBy = "bankApplication")
+    private Offer offer;
 
     public Integer getId() {
         return id;
@@ -82,6 +80,10 @@ public class BankApplication {
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public Offer getOffer() {
+        return offer;
     }
 
     public static BankApplicationBuilder builder() {

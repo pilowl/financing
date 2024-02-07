@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.klix.financing.domain.application.ApplicationService;
-import com.klix.financing.domain.application.model.ApplicationWithOrders;
+import com.klix.financing.domain.application.model.ApplicationWithOffers;
 import com.klix.financing.domain.application.rest.dto.CreateApplicationRequest;
 import com.klix.financing.domain.application.rest.dto.CreateApplicationResponse;
 import com.klix.financing.domain.application.rest.dto.GetApplicationResponse;
@@ -46,9 +46,9 @@ public class ApplicationController {
         return new ResponseEntity<>(new CreateApplicationResponse(uuid), HttpStatus.CREATED);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{uuid}")
     public ResponseEntity<GetApplicationResponse> getMethodName(@PathVariable String uuid) {
-        ApplicationWithOrders applicationWithOrders = applicationService.GetApplicationByUUID(uuid);
-        return new ResponseEntity<>(applicationRequestMapper.mapApplicationWithOrderToGetApplicationResponse(applicationWithOrders), HttpStatus.OK);
+        ApplicationWithOffers applicationWithOffers = applicationService.GetApplicationByUUID(uuid);
+        return new ResponseEntity<>(applicationRequestMapper.mapApplicationWithOffersToGetApplicationResponse(applicationWithOffers), HttpStatus.OK);
     }
 }

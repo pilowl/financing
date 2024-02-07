@@ -1,12 +1,13 @@
 package com.klix.financing.domain.application;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
-import com.klix.financing.domain.application.mapper.ApplicationDetailMapper;
+import com.klix.financing.domain.application.mapper.ApplicationMapper;
 import com.klix.financing.domain.application.model.ApplicationDetails;
-import com.klix.financing.domain.application.model.ApplicationWithOrders;
+import com.klix.financing.domain.application.model.ApplicationWithOffers;
 import com.klix.financing.domain.application.repository.ApplicationRepository;
 import com.klix.financing.domain.application.repository.entity.Application;
 import com.klix.financing.domain.bankapplication.BankApplicationService;
@@ -17,14 +18,14 @@ public class ApplicationServiceImpl implements ApplicationService {
     private final ApplicationRepository applicationRepository;
     private final BankApplicationService bankApplicationService;
 
-    private final ApplicationDetailMapper applicationDetailMapper;
+    private final ApplicationMapper applicationMapper;
     
     public ApplicationServiceImpl(
-        ApplicationDetailMapper applicationDetailMapper,
+        ApplicationMapper applicationDetailMapper,
         ApplicationRepository applicationRepository,
         BankApplicationService bankApplicationService
     ) {
-        this.applicationDetailMapper = applicationDetailMapper;
+        this.applicationMapper = applicationDetailMapper;
         this.applicationRepository = applicationRepository;
         this.bankApplicationService = bankApplicationService;
     }
@@ -34,7 +35,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         UUID applicationUUID = UUID.randomUUID();  
         applicationDetails.setUuid(applicationUUID);
 
-        Application application = applicationDetailMapper.mapApplicationDetailsToApplication(applicationDetails);
+        Application application = applicationMapper.mapApplicationDetailsToApplication(applicationDetails);
 
         application = applicationRepository.save(application);
 
@@ -44,8 +45,8 @@ public class ApplicationServiceImpl implements ApplicationService {
     }
 
     @Override
-    public ApplicationWithOrders GetApplicationByUUID(String uuid) {
-        Application applicationWithOrders = applicationRepository.findByUuid(UUID.fromString(uuid));
-        return applicationDetailMapper.mapApplicationToApplicationWithOffers(applicationWithOrders);
+    public ApplicationWithOffers GetApplicationByUUID(String uuid) {
+        Optional<Application> application = applicationRepository.findApplicationWithBankApplicaitonOfferByUuid(UUID.fromString(uuid));
+        return applicationMapper.mapApplicationToApplicationWithOffers(application.get());
     }
 }

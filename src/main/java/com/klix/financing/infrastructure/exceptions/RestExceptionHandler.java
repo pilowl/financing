@@ -16,7 +16,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
       @ExceptionHandler
       @ResponseStatus(HttpStatus.BAD_REQUEST)
       public ResponseEntity<BadRequestError> handleJsonMappingException(JsonMappingException ex) {
-          BadRequestError errorResponse = new BadRequestError("request body isn't good, please fix");
+          //BadRequestError errorResponse = new BadRequestError("request body isn't good, please fix");
+          BadRequestError errorResponse = new BadRequestError(ex.getMessage());
           return new ResponseEntity<BadRequestError>(errorResponse, HttpStatus.BAD_REQUEST);
       }   
 }

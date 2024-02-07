@@ -12,7 +12,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -63,8 +62,7 @@ public class Application {
     @Column(name = "scoring_agreed")
     private boolean agreeToBeScored;
 
-    @OneToMany
-    @JoinColumn(name = "application_id")
+    @OneToMany(mappedBy = "application")
     private Set<BankApplication> bankApplications;
 
     public Set<BankApplication> getBankApplications() {

@@ -4,13 +4,16 @@ import java.sql.Date;
 
 import com.klix.financing.domain.bankapplication.repository.entity.BankApplication;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,12 +36,12 @@ public class Offer {
     @Column(name ="first_repayment")
     private Date firstRepaymentDate;
 
-    @ManyToOne
-    @JoinColumn(name="bank_application_id", nullable=false)
-    private BankApplication application;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bank_application_id", referencedColumnName = "id")
+    private BankApplication bankApplication;
 
-    public void setApplication(BankApplication application) {
-        this.application = application;
+    public void setBankApplication(BankApplication bankApplication) {
+        this.bankApplication = bankApplication;
     }
 
     public Double getMonthlyPaymentAmount() {
@@ -73,7 +76,7 @@ public class Offer {
         this.firstRepaymentDate = firstRepaymentDate;
     }
 
-    public BankApplication getApplication() {
-        return application;
+    public BankApplication getBankApplication() {
+        return bankApplication;
     }
 }

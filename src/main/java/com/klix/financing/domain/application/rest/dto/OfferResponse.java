@@ -5,7 +5,10 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class OfferResponse {
-    
+
+    @JsonProperty("bankName")
+    private String bankName;
+
     @JsonProperty("firstRepayment")
     private Date firstRepayment;
 
@@ -15,8 +18,16 @@ public class OfferResponse {
     @JsonProperty("paymentAmount")
     private Integer paymentAmount;
 
-    @JsonProperty("firstRepayment")
+    @JsonProperty("totalRepayment")
     private Double totalRepayment;
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
 
     public void setFirstRepayment(Date firstRepayment) {
         this.firstRepayment = firstRepayment;
@@ -33,4 +44,5 @@ public class OfferResponse {
     public void setTotalRepayment(Double totalRepayment) {
         this.totalRepayment = totalRepayment;
     }
+
 }
