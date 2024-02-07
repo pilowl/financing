@@ -2,9 +2,7 @@ package com.klix.financing.domain.bankapplication;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
-import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.klix.financing.domain.application.model.ApplicationDetails;
@@ -13,20 +11,14 @@ import com.klix.financing.domain.application.repository.entity.Application;
 import com.klix.financing.domain.bankapplication.mapper.BankApplicationMapper;
 import com.klix.financing.domain.bankapplication.model.BankName;
 import com.klix.financing.domain.bankapplication.offer.OfferService;
-import com.klix.financing.domain.bankapplication.offer.mapper.OfferMapper;
 import com.klix.financing.domain.bankapplication.offer.model.OfferDetails;
-import com.klix.financing.domain.bankapplication.offer.repository.OfferRepository;
-import com.klix.financing.domain.bankapplication.offer.repository.entity.Offer;
 import com.klix.financing.domain.bankapplication.repository.BankApplicationRepository;
 import com.klix.financing.domain.bankapplication.repository.entity.Bank;
 import com.klix.financing.domain.bankapplication.repository.entity.BankApplication;
 import com.klix.financing.domain.bankapplication.repository.entity.Status;
-import com.klix.financing.infrastructure.logger.Slf4jLogger;
 
 @Service
 public class BankApplicationServiceImpl implements BankApplicationService {
-
-    private final Logger logger = Slf4jLogger.getLogger(this.getClass());
 
     private final List<BankClient> bankClients;
     private final HashMap<BankName, BankClient> bankClientIndex;

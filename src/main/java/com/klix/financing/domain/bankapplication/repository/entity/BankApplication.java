@@ -3,12 +3,10 @@ package com.klix.financing.domain.bankapplication.repository.entity;
 import com.klix.financing.domain.application.repository.entity.Application;
 import com.klix.financing.domain.bankapplication.offer.repository.entity.Offer;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;

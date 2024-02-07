@@ -7,7 +7,6 @@ import java.util.LinkedList;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.mapstruct.factory.Mappers;
 
 import com.klix.financing.domain.application.model.ApplicationDetails;
 import com.klix.financing.domain.application.model.ApplicationWithOffers;

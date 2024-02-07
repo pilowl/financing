@@ -17,7 +17,6 @@ import com.klix.financing.domain.application.rest.dto.CreateApplicationResponse;
 import com.klix.financing.domain.application.rest.dto.GetApplicationResponse;
 import com.klix.financing.domain.application.rest.mapper.ApplicationRequestMapper;
 import com.klix.financing.infrastructure.errors.FieldValidationError;
-import com.klix.financing.infrastructure.errors.GenericRequestError;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
