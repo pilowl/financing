@@ -1,11 +1,11 @@
 package com.klix.financing.domain.application.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Offer {
     private String bankName;
 
-    private Date firstRepayment;
+    private LocalDate firstRepayment;
 
     private Double monthlyPayment;
 
@@ -21,11 +21,11 @@ public class Offer {
         this.bankName = bankName;
     }
 
-    public Date getFirstRepayment() {
+    public LocalDate getFirstRepayment() {
         return firstRepayment;
     }
 
-    public void setFirstRepayment(Date firstRepayment) {
+    public void setFirstRepayment(LocalDate firstRepayment) {
         this.firstRepayment = firstRepayment;
     }
 

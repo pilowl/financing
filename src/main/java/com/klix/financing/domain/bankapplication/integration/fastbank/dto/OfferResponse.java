@@ -1,6 +1,6 @@
 package com.klix.financing.domain.bankapplication.integration.fastbank.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -18,7 +18,7 @@ public class OfferResponse {
 
     @JsonProperty("firstRepaymentDate")
     @JsonFormat(pattern="yyyy-MM-dd")
-    private Date firstRepaymentDate;
+    private LocalDate firstRepaymentDate;
 
     public Double getMonthlyPaymentAmount() {
         return monthlyPaymentAmount;
@@ -32,7 +32,7 @@ public class OfferResponse {
         return numberOfPayments;
     }
 
-    public Date getFirstRepaymentDate() {
+    public LocalDate getFirstRepaymentDate() {
         return firstRepaymentDate;
     }
 }

@@ -16,7 +16,6 @@ import com.klix.financing.domain.bankapplication.repository.entity.BankApplicati
 
 @Mapper(componentModel = "spring")
 public interface ApplicationMapper {
-
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "bankApplications", ignore = true)
     Application mapApplicationDetailsToApplication(ApplicationDetails applicationDetails);
@@ -34,7 +33,7 @@ public interface ApplicationMapper {
             if (bankApplication.getOffer() != null) {
                 Offer newOffer = new Offer();
                 newOffer.setBankName(bankApplication.getBankName().name());
-                newOffer.setFirstRepayment(bankApplication.getOffer().getFirstRepaymentDate());
+                newOffer.setFirstRepayment(bankApplication.getOffer().getFirstRepaymentDate().toLocalDate());
                 newOffer.setMonthlyPayment(bankApplication.getOffer().getMonthlyPaymentAmount());
                 newOffer.setTotalRepayment(bankApplication.getOffer().getTotalRepaymentAmount());
                 newOffer.setPaymentAmount(bankApplication.getOffer().getNumberOfPayments());

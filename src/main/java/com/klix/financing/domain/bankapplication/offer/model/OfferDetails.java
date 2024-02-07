@@ -1,6 +1,6 @@
 package com.klix.financing.domain.bankapplication.offer.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class OfferDetails {
     
@@ -10,7 +10,7 @@ public class OfferDetails {
 
     private Integer numberOfPayments;
 
-    private Date firstRepaymentDate;
+    private LocalDate firstRepaymentDate;
 
     public Double getMonthlyPaymentAmount() {
         return monthlyPaymentAmount;
@@ -24,7 +24,7 @@ public class OfferDetails {
         return numberOfPayments;
     }
 
-    public Date getFirstRepaymentDate() {
+    public LocalDate getFirstRepaymentDate() {
         return firstRepaymentDate;
     }
 
@@ -40,7 +40,7 @@ public class OfferDetails {
         this.numberOfPayments = numberOfPayments;
     }
 
-    public void setFirstRepaymentDate(Date firstRepaymentDate) {
+    public void setFirstRepaymentDate(LocalDate firstRepaymentDate) {
         this.firstRepaymentDate = firstRepaymentDate;
     }
 }
