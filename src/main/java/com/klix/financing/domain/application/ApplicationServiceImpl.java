@@ -47,6 +47,10 @@ public class ApplicationServiceImpl implements ApplicationService {
     @Override
     public ApplicationWithOffers GetApplicationByUUID(String uuid) {
         Optional<Application> application = applicationRepository.findApplicationWithBankApplicaitonOfferByUuid(UUID.fromString(uuid));
+        if (!application.isPresent()) {
+            return null;
+        }
+
         return applicationMapper.mapApplicationToApplicationWithOffers(application.get());
     }
 }
